@@ -1,0 +1,70 @@
+import java.util.*;
+
+public class MaritimeReliefRouteOptimization {
+
+    // Distance Matrix (Adjacency Matrix)
+    static int[][] distanceMatrix = {
+        {0, 15, 25, 35},
+        {15, 0, 30, 28},
+        {25, 30, 0, 20},
+        {35, 28, 20, 0}
+    };
+
+    // Location names
+    static String[] locations = {"Port A", "Port B", "Relief Center C", "Relief Center D"};
+
+    // Insertion Sort 
+    public static String insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+
+            // Move elements of[0..i-1], that are greater than key, to one position ahead of their current position
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+        return "Array sorted successfully.";
+    }//end of a static method
+
+    // Binary Search
+    public static String binarySearch(int[] arr, int target) 
+    {
+        int low = 0;
+        int high = arr.length -1;
+        
+        while (low <= high) 
+        {
+            int mid = (low + high) / 2;
+            
+            if (arr[mid] == target) 
+            {
+                return String.valueOf(mid);
+            }
+            else if (arr[mid] < target)
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid -1;
+            }
+        }
+        return "Target not found.";
+    }//end of a static method
+
+    // 9. Main Method
+    public static void main(String[] args) 
+    {
+        // Sorting and Searching 
+        int[] arr = {8, 3, 5, 1, 9, 2}; 
+        insertionSort(arr); 
+        System.out.println("--- Sorting and Searching Method ---");
+        System.out.println("Sorted Array: " + Arrays.toString(arr)); 
+        System.out.println();
+        System.out.println("Binary Search (5 found at index): " + binarySearch(arr, 5));
+    }
+}
